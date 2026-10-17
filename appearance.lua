@@ -19,7 +19,7 @@ function M.apply(config)
 			"#8DB0C9", "#B596BC", "#7FB5B5", "#E6E2D6",
 		},
 	}
-	config.font = wezterm.font("JetBrains Mono", { weight = "Bold" })
+	config.font = wezterm.font("IosevkaTerm Nerd Font", { weight = "Bold" })
 	config.font_size = 12.5
 	config.window_background_opacity = 0.9
 	config.window_decorations = "RESIZE"
