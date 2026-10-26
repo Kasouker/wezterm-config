@@ -1,7 +1,8 @@
 local wezterm = require("wezterm")
 local M = {}
 
-local wallpaper_dir = "C:/Users/gazou/Projet_Perso/wallpapers"
+-- Les fonds d'écran sont rangés dans la config, pour la suivre d'une machine à l'autre
+local wallpaper_dir = wezterm.config_dir .. "/wallpapers"
 
 local function get_random_wallpaper()
 	local files = {}

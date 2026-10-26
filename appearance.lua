@@ -26,7 +26,10 @@ function M.apply(config)
 	config.default_cursor_style = "BlinkingBar"
 	config.audible_bell = "Disabled"
 	config.window_close_confirmation = "NeverPrompt"
-	config.default_domain = "WSL:Ubuntu"
+	-- Sous Windows on ouvre WSL ; sous Linux, le shell par défaut suffit
+	if wezterm.target_triple:find("windows") then
+		config.default_domain = "WSL:Ubuntu"
+	end
 end
 
 return M
