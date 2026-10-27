@@ -27,9 +27,11 @@ cd ~
 Si `~/.local/bin` n'est pas encore dans ton `PATH` :
 
 ```bash
-echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.zshrc   # ou ~/.bashrc si tu es sous bash
+echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.zshrc
 exec $SHELL
 ```
+
+(Sous bash, remplace `~/.zshrc` par `~/.bashrc`.)
 
 ### 2. La police (IosevkaTerm Nerd Font)
 
