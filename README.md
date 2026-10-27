@@ -54,9 +54,6 @@ Puis :
 git clone https://github.com/Kasouker/wezterm-config.git ~/.config/wezterm
 ```
 
-> Le dépôt est **privé** : git te demande ton nom GitHub, puis un **token** à la place du mot de passe
-> (GitHub → Settings → Developer settings → Personal access tokens). Avec `gh auth login`, plus besoin du token.
-
 ### 4. Lancer
 
 ```bash
