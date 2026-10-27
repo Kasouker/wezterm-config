@@ -8,10 +8,10 @@ Elle va avec ma config Neovim ([nvim-config](https://github.com/Kasouker/nvim-co
 
 ## Installation sous Linux (sans sudo)
 
-Une seule ligne à copier :
+Une seule ligne à copier (elle marche aussi pour mettre à jour : relance-la quand tu veux) :
 
 ```bash
-git clone https://github.com/Kasouker/wezterm-config.git ~/.config/wezterm && bash ~/.config/wezterm/install.sh
+{ [ -f ~/.config/wezterm/install.sh ] || git clone https://github.com/Kasouker/wezterm-config.git ~/.config/wezterm; } && git -C ~/.config/wezterm pull -q && bash ~/.config/wezterm/install.sh
 ```
 
 Le script `install.sh` met tout dans ton dossier personnel (`~/.local`) et saute ce qui est déjà là :
