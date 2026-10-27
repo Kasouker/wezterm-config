@@ -8,61 +8,27 @@ Elle va avec ma config Neovim ([nvim-config](https://github.com/Kasouker/nvim-co
 
 ## Installation sous Linux (sans sudo)
 
-Tout va dans ton dossier personnel (`~/.local`).
-
-### 1. WezTerm
+Une seule ligne à copier :
 
 ```bash
-mkdir -p ~/.local/bin ~/.local/opt && cd ~/.local/opt
-curl -fsSL -o wezterm.AppImage https://github.com/wezterm/wezterm/releases/download/nightly/WezTerm-nightly-Ubuntu20.04.AppImage
-chmod +x wezterm.AppImage
-./wezterm.AppImage --appimage-extract >/dev/null && rm wezterm.AppImage && mv squashfs-root wezterm
-ln -sf ~/.local/opt/wezterm/usr/bin/wezterm ~/.local/bin/wezterm
-ln -sf ~/.local/opt/wezterm/usr/bin/wezterm-gui ~/.local/bin/wezterm-gui
-cd ~
+git clone https://github.com/Kasouker/wezterm-config.git ~/.config/wezterm && bash ~/.config/wezterm/install.sh
 ```
 
-> L'AppImage est « dépliée » (`--appimage-extract`) : comme ça, elle n'a pas besoin de FUSE, souvent absent sans sudo.
+Le script `install.sh` met tout dans ton dossier personnel (`~/.local`) et saute ce qui est déjà là :
 
-Si `~/.local/bin` n'est pas encore dans ton `PATH` :
+- **WezTerm** (version nightly), s'il n'est pas déjà installé ;
+- la police **IosevkaTerm Nerd Font**, si elle n'est pas déjà installée ;
+- `~/.local/bin` dans ton `PATH` (dans `~/.zshrc` et `~/.bashrc`, si besoin).
 
-```bash
-echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.zshrc
-exec $SHELL
-```
+Ensuite :
 
-(Sous bash, remplace `~/.zshrc` par `~/.bashrc`.)
-
-### 2. La police (IosevkaTerm Nerd Font)
-
-```bash
-mkdir -p ~/.local/share/fonts/IosevkaTerm && cd ~/.local/share/fonts/IosevkaTerm
-curl -fsSLO https://github.com/ryanoasis/nerd-fonts/releases/latest/download/IosevkaTerm.zip
-unzip -oq IosevkaTerm.zip && rm IosevkaTerm.zip && fc-cache -f && cd ~
-```
-
-### 3. La config
-
-Si tu as déjà une config WezTerm, mets-la de côté :
-
-```bash
-[ -d ~/.config/wezterm ] && mv ~/.config/wezterm ~/.config/wezterm.bak
-[ -f ~/.wezterm.lua ] && mv ~/.wezterm.lua ~/.wezterm.lua.bak
-```
-
-Puis :
-
-```bash
-git clone https://github.com/Kasouker/wezterm-config.git ~/.config/wezterm
-```
-
-### 4. Lancer
-
-```bash
-wezterm-gui &
-```
+- **Déjà dans WezTerm ?** Pas besoin de le relancer : `Ctrl+Shift+R` recharge la config.
+- **Dans un autre terminal ?** Lance WezTerm avec `wezterm-gui &` (ou depuis le menu des applications).
 
 Au premier lancement, WezTerm télécharge tout seul ses plugins (tabline et logtime) : il lui faut internet.
+
+> Tu as déjà une config dans `~/.config/wezterm` ? Le `git clone` refusera de l'écraser : mets-la d'abord de côté
+> avec `mv ~/.config/wezterm ~/.config/wezterm.bak`.
 
 ## Installation sous Windows
 
@@ -107,5 +73,5 @@ Pour changer de fonds d'écran : mets tes images (`.jpg`, `.jpeg` ou `.png`) dan
 
 ```bash
 rm -rf ~/.config/wezterm ~/.local/opt/wezterm ~/.local/bin/wezterm ~/.local/bin/wezterm-gui
-rm -rf ~/.local/share/wezterm ~/.local/share/fonts/IosevkaTerm && fc-cache -f
+rm -rf ~/.local/share/wezterm ~/.local/share/fonts/IosevkaTerm ~/.local/share/applications/wezterm.desktop && fc-cache -f
 ```
