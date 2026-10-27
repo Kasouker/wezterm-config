@@ -1,5 +1,5 @@
 
--- logtime_plugin.lua : charge le plugin logtime depuis le projet, sans rien copier.
+-- logtime_plugin.lua : charge le plugin logtime depuis le projet, sans rien copier (ou depuis GitHub s'il n'est pas là).
 
 -- `require("logtime_plugin")` garde le résultat en mémoire : tous les fichiers de la config partagent le MÊME plugin.
 
@@ -41,13 +41,13 @@ end
 
 local f = io.open(path, "rb")
 
+-- Pas de projet logtime sur cette machine : on prend la version publiée sur GitHub
+
 if not f then
 
-local message = "fichier introuvable : " .. path
+os.remove(report_path)
 
-report(message)
-
-error("logtime : " .. message, 0)
+return wezterm.plugin.require("https://github.com/Kasouker/logtime.wezterm")
 
 end
 
