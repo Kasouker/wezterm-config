@@ -52,6 +52,8 @@ else
 fi
 
 step "~/.local/bin dans le PATH"
+# Le fichier de démarrage du shell utilisé (~/.zshrc sous zsh) est créé s'il n'existe pas encore
+touch "$HOME/.$(basename "${SHELL:-/bin/bash}")rc"
 for rc in "$HOME/.zshrc" "$HOME/.bashrc"; do
 	if [ -e "$rc" ] && ! grep -q '\.local/bin' "$rc"; then
 		printf '\nexport PATH="$HOME/.local/bin:$PATH"\n' >> "$rc"
