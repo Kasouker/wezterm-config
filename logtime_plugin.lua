@@ -1,5 +1,7 @@
 
--- logtime_plugin.lua : charge le plugin logtime depuis le projet, sans rien copier (ou depuis GitHub s'il n'est pas là).
+-- logtime_plugin.lua : charge le plugin logtime depuis le projet, sans rien copier. Sans le projet (pas de git clone
+
+-- dans ~/Projet_Perso/logtime.wezterm), WezTerm démarre sans logtime : un plugin vide, qui ne fait rien.
 
 -- `require("logtime_plugin")` garde le résultat en mémoire : tous les fichiers de la config partagent le MÊME plugin.
 
@@ -41,13 +43,23 @@ end
 
 local f = io.open(path, "rb")
 
--- Pas de projet logtime sur cette machine : on prend la version publiée sur GitHub
+-- Pas de projet logtime sur cette machine : un plugin vide (pas de compteur, pas d'erreur)
 
 if not f then
 
 os.remove(report_path)
 
-return wezterm.plugin.require("https://github.com/Kasouker/logtime.wezterm")
+return {
+
+apply_to_config = function() end,
+
+tick = function()
+
+return ""
+
+end,
+
+}
 
 end
 
